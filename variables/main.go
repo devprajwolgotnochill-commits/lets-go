@@ -15,4 +15,12 @@ func main() {
 
 	fmt.Printf("Is online? %T\n", isOnline) //prints boolean
 
+	var sum int = 1 + 3
+
+	fmt.Println(sum)
+	fmt.Printf("Sum is a %T dataType \n", sum)
+
+	// fmt.Print does not support format verbs like %t or %T.
+	// fmt.Printf does support formatting.
+	// fmt.Println it prints a new line
 }
