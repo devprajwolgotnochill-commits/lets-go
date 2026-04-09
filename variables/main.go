@@ -2,6 +2,13 @@ package main
 
 import "fmt"
 
+//capital 1st letter = public
+const PI = 3.15
+
+//this is private
+// cant be used in other package should always be used in the same package
+const logincredits = "cful14307"
+
 func main() {
 	var Name string = "prajwal"
 
