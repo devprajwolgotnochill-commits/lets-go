@@ -23,4 +23,13 @@ func main() {
 	// fmt.Print does not support format verbs like %t or %T.
 	// fmt.Printf does support formatting.
 	// fmt.Println it prints a new line
+
+	UserName := "email1234@gg"
+	// new way of declaring var
+	// work only in the local
+	//cant be global var
+	//declaring it outside of function or globally is not allowed
+
+	fmt.Println("Your username is " + UserName)
+
 }
