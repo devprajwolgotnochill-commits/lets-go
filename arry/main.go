@@ -27,6 +27,6 @@ func main() {
 
 	fmt.Println(colors, "Lenth = ", len(colors))
 
-	//
+	fmt.Printf("%T \n", arry_num)
 
 }
