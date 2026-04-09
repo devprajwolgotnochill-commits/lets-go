@@ -9,6 +9,9 @@ const PI = 3.15
 // cant be used in other package should always be used in the same package
 const logincredits = "cful14307"
 
+// Capital → "Can be Captured" outside the package
+// Lowercase → "Locked inside" the package
+
 // +----------------------+-------------------------+
 // | Identifier Name      | Visibility / Access     |
 // +----------------------+-------------------------+
