@@ -42,4 +42,20 @@ func main() {
 	// its also 2007
 	fmt.Println(i)
 
+	// swap with the fuck
+	// i dont need pointer ???
+	x := 12
+	y := 24
+
+	fmt.Println(x, y)
+
+	// needs
+	// provides the addr
+	ptr1 := &x
+	ptr2 := &y
+
+	swap(ptr1, ptr2)
+
+	fmt.Println(x, y)
+
 }
