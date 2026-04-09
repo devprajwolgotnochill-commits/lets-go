@@ -58,5 +58,8 @@ func main() {
 
 	fmt.Println(students_arry)
 
-	fmt.Println(sort.IntsAreSorted(students_arry))
+	s_arry := []int{10, 20, 30, 40}
+
+	fmt.Println(Removeslice(3, s_arry))
+
 }
