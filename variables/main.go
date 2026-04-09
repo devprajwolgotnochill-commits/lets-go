@@ -9,6 +9,18 @@ const PI = 3.15
 // cant be used in other package should always be used in the same package
 const logincredits = "cful14307"
 
+// +----------------------+-------------------------+
+// | Identifier Name      | Visibility / Access     |
+// +----------------------+-------------------------+
+// | Capital First Letter | Public / Exported      |
+// |                      | Accessible from        |
+// |                      | other packages         |
+// +----------------------+-------------------------+
+// | Lowercase First      | Private / Unexported   |
+// | Letter               | Only accessible within |
+// |                      | the same package       |
+// +----------------------+-------------------------+
+
 func main() {
 	var Name string = "prajwal"
 
