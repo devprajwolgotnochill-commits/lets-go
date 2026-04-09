@@ -27,4 +27,6 @@ func main() {
 
 	fmt.Println(colors, "Lenth = ", len(colors))
 
+	//
+
 }
