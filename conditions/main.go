@@ -18,7 +18,5 @@ func main() {
 	}
 
 	// else if {}
-	// no switch ?
-	//
-	//
+
 }
