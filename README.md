@@ -1,27 +1,34 @@
 #GO LANGUAGE
 
+# Go fmt.Printf Cheat Sheet
 
-#IMP NOTES
+## Strings
+- `%s` → string
+- `%q` → quoted string
+- `%v` → default
 
-""
-%s  string
-%q  quoted string
-%v  default format
-%+v fields with names
-%#v Go-syntax
+## Integers
+- `%d` → decimal (normal int)
+- `%b` → binary
+- `%x` → hex (lowercase)
+- `%X` → hex (uppercase)
+- `%o` → octal
+- `%v` → default
 
-%d  decimal int
-%b  binary
-%x  hex
-%X  HEX
-%o  octal
+## Floats
+- `%f` → float
+- `%.2f` → 2 decimal places
+- `%e` → scientific
+- `%g` → smart shortest
 
-%f  float
-%.2f  float with 2 decimals
-%e  scientific
-%g  auto format
+## Boolean
+- `%t` → true/false
 
-%t  boolean
-%T  type
-%p  pointer
-""
+## Structs, Slices, Maps
+- `%v` → default
+- `%+v` → with field names
+- `%#v` → Go syntax
+
+## Type & Pointer
+- `%T` → type of variable
+- `%p` → pointer address
