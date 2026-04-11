@@ -23,6 +23,8 @@ func Get_request(web_url string) (string, error) {
 
 	response, er1 := http.Get(web_url)
 
+	// response.Header.Add("Content-Type", "application/json")
+
 	if er1 != nil {
 
 		// fmt.Println("Is the server running?")
