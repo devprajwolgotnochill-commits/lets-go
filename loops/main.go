@@ -3,29 +3,40 @@ package main
 import "fmt"
 
 func main() {
-	// fmt.Println("LoopS")
+	fmt.Println("LoopS")
 
-	// days_slice := []string{"Sun", "Mon", "Tues", "W", "Thus", "Fry", "Sat"}
+	days_slice := []string{"Sun", "Mon", "Tues", "W", "Thus", "Fry", "Sat"}
 
-	// fmt.Println(days_slice)
+	fmt.Println(days_slice)
 
-	// index = numbers , 0 , 1
+	// index = numbers, 0, 1
 	// i = the value of the slice
 
-	// for index, i := range days_slice {
-	// 	fmt.Println(index, i)
-	// }
+	for index, i := range days_slice {
+		fmt.Println(index, i)
+	}
 
-	// for _, days := range days_slice {
-	// 	// fmt.Println(i) //index
-	// 	// fmt.Println(days) Prints days
-	// }
+	for _, days := range days_slice {
+		fmt.Println(days) //index
+		//Prints days
+	}
 
 	// while loop
 	val_num := 0
 	for val_num < 10 {
 		fmt.Println(val_num)
 
-		 val_num++
+		if val_num == 10 {
+			break
+		}
+
+		val_num++
+
 	}
+	//for
+
+	// break
+	// continue
+
+	// goto
 }
