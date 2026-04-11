@@ -24,7 +24,10 @@ func Get_request(web_url string) (string, error) {
 	response, er1 := http.Get(web_url)
 
 	if er1 != nil {
+
+		// fmt.Println("Is the server running?")
 		panic(er1)
+
 	}
 
 	defer response.Body.Close()
@@ -38,8 +41,25 @@ func Get_request(web_url string) (string, error) {
 		panic(er2)
 	}
 
+	// content is in byte format
 	// fmt.Println("Content :", string(content))
+	//
+	//
 
 	return string(content), nil
 
 }
+
+// func byte2str(provide_byte []byte) string {
+
+// 	var provideString strings.Builder
+
+// 	provideString.Write(provide_byte)
+
+// 	// bytesCount, _ := provideString.Write(provide_byte)
+
+//  // provideString.
+
+// 	return provideString.String()
+
+// }
