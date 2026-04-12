@@ -16,7 +16,7 @@ func main() {
 
 	// fmt.Println(url_get)
 
-	WriteData("get.json", url_get)
+	WriteData("get.json", (url_get))
 }
 
 func Get_request(web_url string) (string, error) {
@@ -48,6 +48,7 @@ func Get_request(web_url string) (string, error) {
 	//
 	//
 
+	// json.MarshalIndent(content, "", " ")
 	return string(content), nil
 
 }
