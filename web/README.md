@@ -2,7 +2,7 @@ rgb(127, 76, 127) Not Found
 rgb(95, 75, 115) No Content
 rgb(165, 122, 122) Bad Request
 
-{content: }
+#MiddleWare eg
 ```
     func getBookHandler(w http.ResponseWriter, r *http.Request) {
         // 1. Get your data (even if it's your current fake data)
@@ -21,4 +21,3 @@ rgb(165, 122, 122) Bad Request
         json.NewEncoder(w).Encode(b)
     }
 ```
-{content: }
