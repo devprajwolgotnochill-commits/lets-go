@@ -32,6 +32,7 @@ type Book struct {
 // 	books.savedAt = time.Now()
 // }
 
+// go way of doing //
 func (b *Book) saveBook() {
 
 	b.isSaved = true
