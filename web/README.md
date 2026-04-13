@@ -1,8 +1,21 @@
-rgb(127, 76, 127) Not Found
-rgb(95, 75, 115) No Content
-rgb(165, 122, 122) Bad Request
 
 #MiddleWare eg
+```
+    func BookValidationMiddleware(next http.Handler) http.Handler {
+        return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+            var b Book
+            json.NewDecoder(r.Body).Decode(&b)
+
+            if b.IsEmpty() {
+                http.Error(w, "Payload cannot be empty", http.StatusBadRequest)
+                return
+            }
+
+            next.ServeHTTP(w, r)
+        })
+    }
+```
+#Handler
 ```
     func getBookHandler(w http.ResponseWriter, r *http.Request) {
         // 1. Get your data (even if it's your current fake data)
