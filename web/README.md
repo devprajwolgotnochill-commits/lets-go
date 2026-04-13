@@ -15,7 +15,7 @@
         })
     }
 ```
-#Handler
+#Handlers
 ```
     func getBookHandler(w http.ResponseWriter, r *http.Request) {
         // 1. Get your data (even if it's your current fake data)
