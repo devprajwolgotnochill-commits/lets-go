@@ -34,3 +34,16 @@
         json.NewEncoder(w).Encode(b)
     }
 ```
+
+#PRETTYFIRE
+```
+func prettify(data string) (string, error) {
+	var prettyJSON bytes.Buffer
+	err := json.Indent(&prettyJSON, []byte(data), "", "  ")
+	if err != nil {
+		return "", fmt.Errorf("error indenting JSON: %w", err)
+	}
+	return prettyJSON.String(), nil
+}
+
+```
