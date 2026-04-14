@@ -8,19 +8,20 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// main struct
 type Book struct {
-	Title     string  `json:"title"`  //no space in json
-	Author    *Author `json:"author"` //points to the func
+	BookID    string  `json:"book_id"` // Added tag so it's lowercase in JSON
+	Title     string  `json:"title"`
+	Author    *Author `json:"author"` // This points to the Author struct below
 	Pages     int     `json:"pages"`
 	BookPrice int     `json:"book_price"`
-	IsSaved   bool
+	IsSaved   bool    `json:"is_saved"`
 }
 
-// Author struct
+// book.Author == nil == panic == crash
+
 type Author struct {
-	FirstName string
-	LastName  string
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
 }
 
 // fake data
@@ -32,6 +33,7 @@ func init() {
 	// field Author *Author `json:"author"`
 	library = []Book{
 		{
+			BookID:    "12",
 			Title:     "The Go Programming Blueprints",
 			Author:    &Author{FirstName: "Mat", LastName: "Ryer"},
 			Pages:     300,
@@ -39,6 +41,7 @@ func init() {
 			IsSaved:   true,
 		},
 		{
+			BookID:    "122",
 			Title:     "Clean Code",
 			Author:    &Author{FirstName: "Robert", LastName: "Martin"},
 			Pages:     464,
@@ -46,6 +49,7 @@ func init() {
 			IsSaved:   false,
 		},
 		{
+			BookID:    "21",
 			Title:     "The Pragmatic Programmer",
 			Author:    &Author{FirstName: "Andrew", LastName: "Hunt"},
 			Pages:     352,
@@ -53,6 +57,7 @@ func init() {
 			IsSaved:   true,
 		},
 		{
+			BookID:    "99",
 			Title:     "Concurrency in Go",
 			Author:    &Author{FirstName: "Katherine", LastName: "Cox-Buday"},
 			Pages:     240,
@@ -72,12 +77,6 @@ func init() {
 	}
 }
 
-// middleware, go way of ... ,how to use this
-
-func (b *Book) IsEmpty() bool {
-	return b.Title == "" && b.BookPrice == 0
-}
-
 func main() {
 
 	r := mux.NewRouter()
@@ -85,9 +84,9 @@ func main() {
 	r.HandleFunc("/", serveHome).Methods("GET")
 	r.HandleFunc("/book", serveBook).Methods("GET")
 	r.HandleFunc("/book/{id}", get1Book).Methods("GET")
-	r.HandleFunc("/createbook", createBook).Methods("GET")
+	r.HandleFunc("/createbook", createBook).Methods("POST")
 
-	fmt.Println("Serving!")
+	fmt.Println("Serving at http://localhost:8000")
 	log.Fatal(http.ListenAndServe(":8000", r))
 
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"time"
@@ -13,7 +14,13 @@ import (
 // middleware, go way of ... ,how to use this
 
 func (b *Book) IsEmpty() bool {
+	// Check if Title is empty AND if the Author pointer is nils
+	if b.Author == nil {
+		return b.Title == ""
+	}
 
+	// If the author exists, but names are blank
+	return b.Title == "" && b.Author.FirstName == "" && b.Author.LastName == ""
 }
 
 // hello world served
@@ -59,6 +66,7 @@ func get1Book(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// adds new book to the database
 func createBook(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Adding a new book to DB!")
 
@@ -72,9 +80,21 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 
 	var book Book
 	_ = json.NewDecoder(r.Body).Decode(&book)
+
 	if book.IsEmpty() {
 		json.NewEncoder(w).Encode("Invalid data")
 		return
 	}
+
+	rand.Seed(time.Now().UnixNano())
+	book.BookID = strconv.Itoa(rand.Intn(100))
+
+	// library is a slice
+	// var library []Book
+
+	library = append(library, book)
+	fmt.Printf("Library now has %d books!\n", len(library))
+
+	json.NewEncoder(w).Encode(book)
 
 }
