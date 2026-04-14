@@ -73,6 +73,7 @@ func init() {
 }
 
 // middleware, go way of ... ,how to use this
+
 func (b *Book) IsEmpty() bool {
 	return b.Title == "" && b.BookPrice == 0
 }
@@ -84,6 +85,7 @@ func main() {
 	r.HandleFunc("/", serveHome).Methods("GET")
 	r.HandleFunc("/book", serveBook).Methods("GET")
 	r.HandleFunc("/book/{id}", get1Book).Methods("GET")
+	r.HandleFunc("/createbook", createBook).Methods("GET")
 
 	fmt.Println("Serving!")
 	log.Fatal(http.ListenAndServe(":8000", r))

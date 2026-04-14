@@ -10,6 +10,12 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// middleware, go way of ... ,how to use this
+
+func (b *Book) IsEmpty() bool {
+
+}
+
 // hello world served
 func serveHome(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World! %s", time.Now())
@@ -51,4 +57,24 @@ func get1Book(w http.ResponseWriter, r *http.Request) {
 		"error": "Book not found",
 		"info":  "Index out of range",
 	})
+}
+
+func createBook(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Adding a new book to DB!")
+
+	w.Header().Set("Content-Type", "application/json")
+
+	if r.Body == nil {
+		json.NewEncoder(w).Encode("Invalid data")
+	}
+
+	// {}
+
+	var book Book
+	_ = json.NewDecoder(r.Body).Decode(&book)
+	if book.IsEmpty() {
+		json.NewEncoder(w).Encode("Invalid data")
+		return
+	}
+
 }
