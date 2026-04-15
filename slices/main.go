@@ -51,15 +51,37 @@ func main() {
 	// make([]int, 5)
 	students_arry = append(students_arry, 222, 333, 444, 555)
 
-	fmt.Println(students_arry)
+	// fmt.Println(students_arry)
 
 	// it sorts the arry in increasing orders
 	sort.Ints(students_arry)
 
-	fmt.Println(students_arry)
+	// fmt.Println(students_arry)
 
-	s_arry := []int{10, 20, 30, 40}
+	//optimize way of using if we know the slice size?
+	// s_arry := make([]int, 4)
+	s_arry := []interface{}{234, 24, 34, "pwad", "pwd"}
 
-	fmt.Println(Removeslice(3, s_arry))
+	// interface{} -> anydata type I D C
+	fmt.Println(s_arry)
 
+	// slicing the slice // this is very imp //
+	// s_arry = append(s_arry[1:])
+	// fmt.Println(s_arry)
+	// // [20 30 40] 1 to all
+
+	// s_arry = append(s_arry[:3])
+	// fmt.Println(s_arry)
+	// [20 30 40]
+
+	// removing value from the slice form a slice VVI
+	index := 2
+
+	// simple trick to remove a value from slice
+	s_arry = append(s_arry[:index], s_arry[index+1:]...)
+	// ... =>Take all the individual elements out of this slice and pass them as separate arguments.
+	// s_arry[:1] is 0 to 1 , 1 is not inclucive so only 0 == 234
+	// s_arry[1:] is from 1 to end == 24 pwad pwds
+
+	fmt.Println(s_arry)
 }
