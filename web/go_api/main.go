@@ -82,9 +82,14 @@ func main() {
 	r := mux.NewRouter()
 	//ref of the func
 	r.HandleFunc("/", serveHome).Methods("GET")
+
 	r.HandleFunc("/book", serveBook).Methods("GET")
+
 	r.HandleFunc("/book/{id}", get1Book).Methods("GET")
+
 	r.HandleFunc("/createbook", createBook).Methods("POST")
+
+	r.HandleFunc("/updateBook", updateBook).Methods("POST")
 
 	fmt.Println("Serving at http://localhost:8000")
 	log.Fatal(http.ListenAndServe(":8000", r))

@@ -86,7 +86,8 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rand.Seed(time.Now().UnixNano())
+	// rand.Seed(time.Now().UnixNano()) //no seeding required
+
 	book.BookID = strconv.Itoa(rand.Intn(100))
 
 	// library is a slice
@@ -97,4 +98,8 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(book)
 
+}
+
+func updateBook(w http.ResponseWriter, r *http.Request) {
+	// no db //using for loop // id == // we have id // remove the value // change the value
 }
