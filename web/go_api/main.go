@@ -8,6 +8,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// fields must start with a Capital Letter to be
+// "Exported," otherwise the JSON decoder can't see them
 type Book struct {
 	BookID    string  `json:"book_id"` // Added tag so it's lowercase in JSON
 	Title     string  `json:"title"`
@@ -80,7 +82,7 @@ func init() {
 func main() {
 
 	r := mux.NewRouter()
-	//ref of the func
+	//ref of the funcs
 	r.HandleFunc("/", serveHome).Methods("GET")
 
 	r.HandleFunc("/book", serveBook).Methods("GET")
@@ -89,7 +91,7 @@ func main() {
 
 	r.HandleFunc("/createbook", createBook).Methods("POST")
 
-	r.HandleFunc("/updateBook", updateBook).Methods("POST")
+	r.HandleFunc("/updateBook/{id}", updateBook).Methods("PUT")
 
 	fmt.Println("Serving at http://localhost:8000")
 	log.Fatal(http.ListenAndServe(":8000", r))

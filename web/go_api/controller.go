@@ -66,14 +66,14 @@ func get1Book(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// adds new book to the database
+// adds new book to the book_database
 func createBook(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Adding a new book to DB!")
 
 	w.Header().Set("Content-Type", "application/json")
 
 	if r.Body == nil {
-		json.NewEncoder(w).Encode("Invalid data")
+		json.NewEncoder(w).Encode("Invalid book_data")
 	}
 
 	// {}
@@ -82,7 +82,7 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&book)
 
 	if book.IsEmpty() {
-		json.NewEncoder(w).Encode("Invalid data")
+		json.NewEncoder(w).Encode("Invalid book_data")
 		return
 	}
 
@@ -100,6 +100,52 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// only works when provided full json ,remove and re-add
+// better way to do ,find the book by its index (i) and modify the fields of library[i]
+// updates a book in the db
 func updateBook(w http.ResponseWriter, r *http.Request) {
-	// no db //using for loop // id == // we have id // remove the value // change the value
+	//using for loop
+	// // id == // we have id // remove the value
+	// using slice.append
+	fmt.Println("Updating !")
+
+	w.Header().Set("Content-Type", "application/json")
+
+	//updating book through book_id ,grabs id for request
+	params := mux.Vars(r)
+	id := params["id"]
+
+	// looping, id ,remove ,add
+
+	for i, book_data := range library {
+		if book_data.BookID == id {
+
+			// Remove the old book
+			library = append(library[:i], library[i+1:]...)
+
+			// a variable to hold the NEW data
+			var updatedBook Book
+
+			err1 := json.NewDecoder(r.Body).Decode(&updatedBook)
+
+			if err1 != nil {
+				http.Error(w, "Invalid request body", http.StatusBadRequest)
+				return
+			}
+
+			// ID remains the same as the URL param
+			updatedBook.BookID = id
+
+			// Append the updated book
+			library = append(library, updatedBook)
+
+			// Send back the updated book (or the whole library)
+			json.NewEncoder(w).Encode(library)
+
+			return
+
+		}
+
+	}
+	//
 }
