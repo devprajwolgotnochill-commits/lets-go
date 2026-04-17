@@ -35,6 +35,11 @@ func init() {
 	// field Author *Author `json:"author"`
 	library = []Book{
 		{
+			BookID: "1",
+			Title:  "The Go Programming Language",
+			Author: &Author{FirstName: "Alan A. A.", LastName: "Donovan"},
+		},
+		{
 			BookID:    "12",
 			Title:     "The Go Programming Blueprints",
 			Author:    &Author{FirstName: "Mat", LastName: "Ryer"},
@@ -92,6 +97,8 @@ func main() {
 	r.HandleFunc("/createbook", createBook).Methods("POST")
 
 	r.HandleFunc("/updateBook/{id}", updateBook).Methods("PUT")
+
+	r.HandleFunc("/deletebook/{id}", deleteBook).Methods("DELETE")
 
 	fmt.Println("Serving at http://localhost:8000")
 	log.Fatal(http.ListenAndServe(":8000", r))

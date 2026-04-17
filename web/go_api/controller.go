@@ -26,7 +26,7 @@ func (b *Book) IsEmpty() bool {
 // hello world served
 func serveHome(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World! %s", time.Now())
-	w.Write([]byte("<h1>Hellno</h1>"))
+	w.Write([]byte("Hellno"))
 }
 
 func serveBook(w http.ResponseWriter, r *http.Request) {
@@ -100,6 +100,7 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// not effective
 // only works when provided full json ,remove and re-add
 // better way to do ,find the book by its index (i) and modify the fields of library[i]
 // updates a book in the db
@@ -148,4 +149,33 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 
 	}
 	//
+}
+
+// deletesBook from the db
+func deleteBook(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Deleted !")
+
+	w.Header().Set("Content-Type", "application/json")
+
+	params := mux.Vars(r)
+	id := params["id"]
+
+	for i, book_data := range library {
+		if book_data.BookID == id {
+
+			// Remove
+			library = append(library[:i], library[i+1:]...)
+
+			// Send back the updated book (or the whole library)
+			w.WriteHeader(http.StatusOK)
+			json.NewEncoder(w).Encode(library)
+
+			return
+
+		}
+
+	}
+
+	w.WriteHeader(http.StatusNotFound)
+	json.NewEncoder(w).Encode(map[string]string{"error": "Book not found"})
 }
