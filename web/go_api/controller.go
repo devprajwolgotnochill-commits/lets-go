@@ -148,7 +148,7 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 		}
 
 	}
-	//
+	//finished need to learn JSON and Slice technic
 }
 
 // deletesBook from the db
@@ -166,7 +166,7 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 			// Remove
 			library = append(library[:i], library[i+1:]...)
 
-			// Send back the updated book (or the whole library)
+			// Send back the updated data (or the whole library)
 			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(library)
 
