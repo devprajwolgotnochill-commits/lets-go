@@ -2,48 +2,67 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 
+	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
-	"go.mongodb.org/mongo-driver/v2/mongo/readpref"
-
-	"github.com/joho/godotenv"
 )
 
 func main() {
-
-	err := godotenv.Load()
+	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+	fmt.Println("Connecting to:", os.Getenv("DB_URL"))
 
-	// 2. Retrieve the variable using the standard library
-	dbURL := os.Getenv("MONGO_DB")
+	uri := os.Getenv("MONGO_DB")
 
-	if dbURL == "" {
-		log.Fatal("DB_URL not found in environment")
+	if uri == "" {
+		log.Fatal("Set your 'MONGODB_URI' environment variable. " +
+			"usage-examples/#environment-variable")
 	}
 
-	// Use the SetServerAPIOptions() method to set the version of the Stable API on the client
-	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	// Create a new client and connect to the server
-	client, err := mongo.Connect(opts)
+	//connecting
+	client, err := mongo.Connect(options.Client().
+		ApplyURI(uri))
 	if err != nil {
 		panic(err)
 	}
 
 	defer func() {
-		if err = client.Disconnect(context.TODO()); err != nil {
+		if err := client.Disconnect(context.TODO()); err != nil {
 			panic(err)
 		}
 	}()
 
-	// Send a ping to confirm a successful connection
-	if err := client.Ping(context.TODO(), readpref.Primary()); err != nil {
+	//fetching
+	coll := client.Database("local").Collection("oplog.rs")
+	title := "oplog.rs"
+
+	var result bson.M
+	err = coll.FindOne(context.TODO(), bson.D{}).
+		Decode(&result)
+
+	if err == mongo.ErrNoDocuments {
+		fmt.Printf("No document was found with the title %s\n", title)
+		return
+	}
+
+	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Pinged your deployment. You successfully connected to MongoDB!")
+
+	//turning into json
+	jsonData, err := json.MarshalIndent(result, "", "    ")
+	if err != nil {
+		panic(err)
+	}
+
+	//printing
+	fmt.Printf("%s\n", jsonData)
 }
