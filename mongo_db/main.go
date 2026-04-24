@@ -13,7 +13,7 @@ func main() {
 	// Use the SetServerAPIOptions() method to set the version of the Stable API on the client
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
 	// opts := options.Client().ApplyURI("mongodb+srv://devprajwolgotnochill:<8MHyR9EoAZBFS287>@letsgomongo.yc0ie7k.mongodb.net/?appName=letsgomongo").SetServerAPIOptions(serverAPI)
-	opts := options.Client().ApplyURI("mongodb+srv://devprajwolgotnochill:8MHyR9EoAZBFS287@letsgomongo.yc0ie7k.mongodb.net/?appName=letsgomongo").SetServerAPIOptions(serverAPI)
+	opts := options.Client().ApplyURI().SetServerAPIOptions(serverAPI)
 
 	// Create a new client and connect to the server
 	client, err := mongo.Connect(opts)
