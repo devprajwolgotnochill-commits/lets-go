@@ -49,16 +49,26 @@ func prettify(data string) (string, error) {
 ```
 # The root folder should contain only one main.go file 
 # other file should be sotred in seprate folders
-
-```
 #IMP NOTE ABT HTTP
+```
 GET — Requests the server to send back the resource specified by the URI.
-HEAD — Works like GET, but the server only returns the response headers and not the actual body content. This is useful for checking metadata without downloading the full resource.
-POST — Sends data in the request body to the server, which then processes it according to the target resource.
-PUT — Uploads data to the specified URI and stores it as the resource there. If the resource already exists, it is replaced; otherwise, a new one is created.
+
+HEAD — Works like GET, but the server only returns the response headers and
+not the actual body content. This is useful for checking metadata without
+downloading the full resource.
+
+POST — Sends data in the request body to the server, which then processes
+it according to the target resource.
+
+PUT — Uploads data to the specified URI and stores it as the resource there.
+If the resource already exists, it is replaced; otherwise, a new one is created.
+
 DELETE — Requests the server to delete the resource located at the given URI.
+
 TRACE — Asks the server to send back the same request it received, allowing the client to see any changes made by intermediate servers.
+
 OPTIONS — Requests the server to provide the list of HTTP methods that are supported for the target resource.
+
 CONNECT — Instructs the server to establish a direct connection with the client, commonly used for creating secure HTTPS tunnels.
 PATCH — Sends partial updates to modify the existing resource identified by the URI.
 ```
