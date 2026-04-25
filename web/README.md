@@ -65,10 +65,14 @@ If the resource already exists, it is replaced; otherwise, a new one is created.
 
 DELETE — Requests the server to delete the resource located at the given URI.
 
-TRACE — Asks the server to send back the same request it received, allowing the client to see any changes made by intermediate servers.
+TRACE — Asks the server to send back the same request it received, allowing
+the client to see any changes made by intermediate servers.
 
-OPTIONS — Requests the server to provide the list of HTTP methods that are supported for the target resource.
+OPTIONS — Requests the server to provide the list of HTTP methods that are
+supported for the target resource.
 
-CONNECT — Instructs the server to establish a direct connection with the client, commonly used for creating secure HTTPS tunnels.
+CONNECT — Instructs the server to establish a direct connection with the client,
+commonly used for creating secure HTTPS tunnels.
+
 PATCH — Sends partial updates to modify the existing resource identified by the URI.
 ```
